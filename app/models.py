@@ -22,4 +22,4 @@ class clienteBase(Base):
     Propian_Ma = Column(String)
     Propina_M = Column(String)
     
-    
+
