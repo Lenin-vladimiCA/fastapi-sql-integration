@@ -1,5 +1,6 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional,List
+
 
 #Modelo:validacion de datos Usuario
 class usuarioSchema(BaseModel):
@@ -7,13 +8,24 @@ class usuarioSchema(BaseModel):
     apellido: str
     edad: int
 
+class LibroSchema(BaseModel):
+    id:int
+    nombre_libro:str
+    cantidad:int
+    Descripsion:str
+    class Config:
+        from_attributes = True
+    
+
+
 #Modelo:validacion de datos Cliente
 class clientesSchema(BaseModel):
     nombre:str
     apellido:str
-    llegada:str
-    Vuelo:str
-    Cantidad:int
-    Propian_A:str
-    Propian_Ma:str
-    Propina_M:str
+    libro:List[LibroSchema]= []
+    cantidad:int
+    class config:
+        from_attributes=True
+
+
+

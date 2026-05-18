@@ -29,12 +29,12 @@ def post_usuario(nombre:str,apellido:str,edad:int,db:Session=Depends(Conexion)):
 
 #metodo Put
 @router.put("/put_usuario/{id}",response_model=usuarioSchema)
-def put_usuario(id:int,nombre:str,apellido:str,edad:int, db:Session = Depends(Conexion)):
-     filtrado = db.query().filter(usuarioBase.id == id).first()
+def put_usuario(edictUsuario:usuarioSchema,db:Session = Depends(Conexion)):
+     filtrado = db.query(usuarioBase).filter(usuarioBase.id == id).first()
 
-     filtrado.nombre = nombre
-     filtrado.apellido = apellido
-     filtrado.edad = edad
+     filtrado.nombre = edictUsuario.nombre
+     filtrado.apellido = edictUsuario.apellido
+     filtrado.edad = edictUsuario.edad
 
      db.commit()
      db.refresh(filtrado)
